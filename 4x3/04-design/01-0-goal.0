@@ -2,9 +2,12 @@
 ==== (-n_n)- LET'S DESIGN A LANGUAGE! -(n_n-) =====
           * Frontend: The "human" part
 
-  Goal:
+  Goals:
+
     * Computer understands human
+
     * Human understands computer's understanding
+
     * Human understands how to express new goals
 
 

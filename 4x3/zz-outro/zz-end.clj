@@ -5,10 +5,10 @@
 
 
 
-
-   "Design and Prototype a Language in Clojure"
+        "How To Tell When You've
+         Accidentally Written a Language"
+                  ; And What To Do About It
             (~._.)~ [THE END] ~(._.~)
-
 
 
                    { :name "Jeanine Adkisson"
