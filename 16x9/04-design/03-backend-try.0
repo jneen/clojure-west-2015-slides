@@ -1,0 +1,19 @@
+
+
+=============== (-n_n)- LET'S DESIGN A LANGUAGE! -(n_n-) ==============
+                  * Backend: the "computer" part
+
+ ??? Questions ???
+
+ - what do your users expect to be *fast*?
+   what are they ok with being *slow*?
+
+ - are you doing something relatively standard? is there prior art?
+
+ - how difficult would it be to switch out backends later?
+
+
+
+
+
+

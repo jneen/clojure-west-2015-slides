@@ -1,0 +1,18 @@
+
+==== (-n_n)- LET'S DESIGN A LANGUAGE! -(n_n-) =====
+          * Backend: the "computer" part
+
+ Things to try:
+
+  - See if you can start with something *easy*
+
+  - Or at least, decide upfront how ambitious
+    you want to be
+
+  - Try to limit the language's access to
+    primitive features at first so you can swap
+    out backends easily
+
+  - Get the "big picture" performance stuff right
+
+

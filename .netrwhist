@@ -1,0 +1,11 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =9
+let g:netrw_dirhist_1='/usr/share/vim/vim74/doc'
+let g:netrw_dirhist_2='/home/jneen/src/talks/clojure-languages'
+let g:netrw_dirhist_3='/home/jneen/src/talks/clojure-languages/slides/00-intro'
+let g:netrw_dirhist_4='/home/jneen/src/talks/clojure-languages/slides'
+let g:netrw_dirhist_5='/home/jneen/src/talks/clojure-languages/slides/00-intro'
+let g:netrw_dirhist_6='/home/jneen/src/talks/clojure-languages/slides/01-definitions'
+let g:netrw_dirhist_7='/home/jneen/src/talks/clojure-languages/slides/02-dsls'
+let g:netrw_dirhist_8='/home/jneen/src/talks/clojure-languages/slides/01-definitions'
+let g:netrw_dirhist_9='/home/jneen/src/talks/clojure-languages/slides/00-intro'

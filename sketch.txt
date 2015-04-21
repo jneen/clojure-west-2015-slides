@@ -1,0 +1,161 @@
+tools:
+  instaparse
+  eval
+  backticks wooo
+
+title:
+Design and Prototype a Language in Clojure
+
+outline:
+
+* Clojure as a language for prototyping languages
+  - Why?
+    -> languages all suck
+    -> implementing languages is super fun
+    -> try your hand at design!
+  - Why clojure?
+    -> easy variants
+    -> easy to generate clojure code
+    -> easy to embed semantics in clojure values (or variants)
+* Design phase
+  - text files
+  - write a highlighting mode for your editor
+  - "implement" a small, complete sample
+  - show it to people! talk about it!
+    ---> but be aware lots of people have Different and occasionally Wrong opinions about languages.
+         give thought to feedback, but it's ok to stick to your own principles.
+  - try to sniff out inconsistencies beforehand.  "but how does this *really* work"
+    ---> simple-sounding things get complex really fast in language-land.  take your time!
+* Prototype phase
+  - compiler pipeline: text -> parser -> ast -> ??? -> clojure
+  - parser: instaparse (brief intro)
+  - ast: free with instaparse
+  - ???: optional transformations, optimizations, IRs.  wild west of coding - "you just have to like, do it".
+    ---> likely have to circle back to design here.  i've had to circle back to design more than 10 times for a language
+  - interpreting: match, recur, etc
+  - OR generating clojure: match and backticks. embed in macros for funsies
+
+
+~~~ ALTERNATE TRACK ~~~
+What even is a programming language?
+Greenspun's tenth: How to tell if you're about to accidentally write a programming language
+- do you have a thing that resembles a list or a tree where nodes represent
+  * operations on data
+  * declared resources
+  * rules of a game
+  * logical equalities
+  * actions to perform
+
+~*> CONGRATULATIONS YOU ARE IMPLEMENTING A LANGUAGE <*~
+
+"Just write a DSL"
+- Embedded vs. Standalone
+Embedded:
+  - use existing language constructs
+  - ~just run the code woo~
+  pros:
+    - no parse, no analysis, no compile, just do.
+    - very powerful out-of-the-box, users can do *arbitrary things* as allowed by the host language
+  cons:
+    - otoh, ===> users can do *arbitrary things* <===
+      no power to limit
+    - opaque, one-way.  all you can do with a program is run it
+Standalone:
+  - parse, analyze, compile/run/manifest/solve/etc
+  pros:
+    - you can limit power (useful if accepting untrusted input)
+    - transparent dsl: programs capable of representing themselves (Cisco DSL)
+    - Humans are good at language, turns out
+  cons:
+    - "but parsing is hard" <-- parsing is the easy part. you were gonna do the hard part anyways.
+    - limited power <-- i argue this is actually good
+
+
+~=~=~ AGENDA ~=~=~
+
++ what *is* a language?
++ interlude: DSLs
++ let's design a language!
++ let's prototype a language!
+
+= "Why would you ever make a programming language?"
+~or~
+= "How did you convince them to let you write a programming language?"
+~or~
+= How to tell if you're about to implement a programming language
+  (or already have) and what to do about it
+
+==== What *is* a programming language? ====
+
+usual story:
+Q: Does your user create trees (or text representations of trees) that you interpret or transform to be interpreted by something else?
+
+A: You're probably writing a language
+
+What *is* a language?
+
+usual story:
+String -> Tree -> [more trees] -> Bytecode Instructions
+
+better:
+Human Input -> [internal processing] -> Interpretation
+  *languages are for humans*
+  interpretation might be:
+  - hardware or vm execution of bytecode
+  - formatting for display (a la html)
+  parsing optional:
+  - Joe's Good Language Tutorial: Write a Parser `(n_n`)
+  - parsers are the easy part: plenty of PLs never touch text
+  - datalog, folders, macros, scratch
+
+~ ~ A language is just a library with complex input! ~ ~
+
+Hello World/
+  Setup/
+    Img/
+      Hello/
+    Img (2)/
+      World/
+    Img (4)/
+      !/
+
+Interpreted Languages: interpretation is done manually
+Compiled Languages: translates to a format interpretable by something else
+
+==== Interlude: what counts as a DSL vs Actual Language ====
+- came about as advertising copy for lisp
+- what does it even mean? regexen? hiccup? erlang?
+- some of these "embedded dsls" are just libraries (rspec)
+- some of these are restricted languages (regexen)
+- some of these are actual full languages! (erlang)
+  ==> DSL is a weasel-term that can basically mean anything. every language is specific to a domain
+
+==== Let's Design a Language! ====
+
+FRONTEND:
+* Design for future flexibility with existing code
+* Talk to a lot of people, especially target users!
+* Write a highlighting mode, treat it like an art project
+* ~~~ UNDERSTAND YOUR USERS ~~~
+
+BACKEND:
+* Decide upfront how ambitious to be.
+* Choose a target platform that's easy - the rest of it is hard enough
+* If you have the right limitations, you can swap out backends later
+* Get the "big picture" performance stuff right, don't worry about the small stuff
+* ~~~ UNDERSTAND YOUR PLATFORM ~~~
+* ~~~ UNDERSTAND YOUR USERS' IMPLEMENTATION NEEDS ~~~
+
+==== Let's Build a Language! ====
+* HUMAN -> TREE
+  - parsing: instaparse. parsing is easy when you can design the syntax.
+  - embedded syntax: macros! transform into variants
+  - other creative things: get it to a variant somehow
+* TREE -> TREE
+  - define: IR (text-representable intermediate tree)
+  - annotation
+  - embrace the statefulness
+  - be willing to introduce new IRs
+* TREE -> INTERPRET
+  - manual interpretation: straightforward tree traversal
+  - compilation: output clojure, output jvm bytecode, jit
